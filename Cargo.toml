@@ -1,0 +1,14 @@
+[package]
+name = "bin2src"
+version = "0.0.12"
+authors = ["Alexandre Gomiero de Oliveira <gomiero@gmail.com>"]
+edition = "2018"
+description = "Converts a binary file to an array of bytes, defined at a source of another language, so you can embed it into your program"
+keywords = [ "binary", "source", "generator", "bytearray"]
+homepage = "https://github.com/gomiero/bin2src"
+readme = "README.md"
+categories = ["command-line-utilities"]
+repository = "https://github.com/gomiero/bin2src"
+license-file = "LICENSE"
+
+[dependencies]
