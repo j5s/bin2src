@@ -61,8 +61,8 @@ impl C {
 	    writeln!(fc)?;
 	    writeln!(fc, "#include <stdlib.h>")?;
 	    writeln!(fc)?;
-	    writeln!(fc, "unsigned int me_sz = {};", self.go.ifile_size)?;
-	    writeln!(fc, "unsigned char me_data[] = {{")?;
+	    writeln!(fc, "unsigned int {}_sz = {};", self.go.ofile_name.to_lowercase(), self.go.ifile_size)?;
+	    writeln!(fc, "unsigned char {}_data[] = {{", self.go.ofile_name.to_lowercase())?;
 	    Ok(())
 	};
 
@@ -127,6 +127,11 @@ impl C {
     }
 
     pub fn generate_files(&mut self) -> Result<(), &'static str> {
+	let cols = if self.go.hex {
+	    13
+	} else {
+	    16
+	};
 	let writeif = |hex: bool, comma: bool, f: &mut BufWriter<fs::File>, expr:u8| -> Result<(), Box<dyn Error>>  {
 	    if hex {
 		if comma {
@@ -181,7 +186,7 @@ impl C {
 		_ => return Err("Can't create output .h file")
 	    };
 	self.out_header(&mut ofile_h, &mut ofile_c)?;
-	self.go.write_data(&mut ofile_c, 13, writeif, String::new())?;
+	self.go.write_data(&mut ofile_c, cols, writeif, String::from("\n"))?;
 	self.out_footer(&mut ofile_c)?;
 	Ok(())
     }

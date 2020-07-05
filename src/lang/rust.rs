@@ -59,9 +59,9 @@ impl Rust {
 	let writeif = |hex: bool, comma: bool, f: &mut BufWriter<fs::File>, expr:u8| -> Result<(), Box<dyn Error>>  {
 	    if hex {
 		if comma {
-		    write!(f, "{:>#02x}u8, ", expr)?;
+		    write!(f, "{:#04x}u8, ", expr)?;
 		} else {
-		    write!(f, "{:>#02x}u8", expr)?;
+		    write!(f, "{:#04x}u8", expr)?;
 		};
 	    } else {
 		if comma {

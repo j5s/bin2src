@@ -31,7 +31,7 @@ impl Python {
 	    if self.go.hex {
 		write!(f, "{}_DATA  = b\"", self.go.ofile_name.to_uppercase())?;
 	    } else {
-		writeln!(f, "{}_DATA = [", self.go.ofile_name.to_uppercase())?;
+		writeln!(f, "{}_DATA = bytes([", self.go.ofile_name.to_uppercase())?;
 	    };
 	    Ok(())
 	};
@@ -48,7 +48,7 @@ impl Python {
 	    if self.go.hex {
 		write!(f, "\"")?;
 	    } else {
-		writeln!(f, "]")?;
+		writeln!(f, "])")?;
 	    };
 	    writeln!(f)?;
 	    Ok(())
@@ -63,11 +63,7 @@ impl Python {
     pub fn generate_files(&mut self) -> Result<(), &'static str> {
 	let writeif = |hex: bool, comma: bool, f: &mut BufWriter<fs::File>, expr:u8| -> Result<(), Box<dyn Error>>  {
 	    if hex {
-		// if comma {
 		    write!(f, "\\x{:>02x}", expr)?;
-		//} else {
-		//    write!(f, "\\x{:>02x}", expr)?;
-		//};
 	    } else {
 		if comma {
 		    write!(f, "{:3}, ", expr)?;

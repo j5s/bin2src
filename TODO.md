@@ -10,7 +10,6 @@
  
 ### Not so important
 
-- [ ] create tests and examples 
 - [ ] implement new languages
 - [ ] review and reformat all the text files
  

@@ -133,7 +133,7 @@ impl Pascal {
 		_ => return Err("Can't create output file")
 	    };
 	self.out_header(&mut ofile)?;
-	self.go.write_data(&mut ofile, 16, writeif, String::new())?;
+	self.go.write_data(&mut ofile, 16, writeif, String::from("\n"))?;
 	self.out_footer(&mut ofile)?;
 	Ok(())
     }
