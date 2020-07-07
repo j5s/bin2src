@@ -75,6 +75,8 @@ impl C {
     
     fn out_footer(&mut self, f: &mut BufWriter<fs::File>) -> Result<(), &'static str> {
 	let mut doblock = move || -> Result<(), Box<dyn Error>> {
+	    let varname = self.go.ofile_name.to_lowercase();
+	    
 	    writeln!(f, "}};")?;
 	    writeln!(f)?;
 	    writeln!(f, "static unsigned int iter_idx = 0;")?;
@@ -87,22 +89,22 @@ impl C {
 	    writeln!(f, "unsigned char* begin()")?;
 	    writeln!(f, "{{")?;
 	    writeln!(f, "  iter_idx = 0;")?;
-	    writeln!(f, "  return &me_data[0];")?;
+	    writeln!(f, "  return &{}_data[0];", varname)?;
 	    writeln!(f, "}}")?;
 	    writeln!(f)?;
 	    writeln!(f, "unsigned char* next()")?;
 	    writeln!(f, "{{")?;
-	    writeln!(f, "  return (iter_idx >= me_sz) ? NULL : &me_data[iter_idx++];")?;
+	    writeln!(f, "  return (iter_idx >= {me}_sz) ? NULL : &{me}_data[iter_idx++];", me = varname)?;
 	    writeln!(f, "}}")?;
 	    writeln!(f)?;
 	    writeln!(f, "unsigned char* end()")?;
 	    writeln!(f, "{{")?;
-	    writeln!(f, "  return &me_data[me_sz - 1];")?;
+	    writeln!(f, "  return &{me}_data[{me}_sz - 1];", me = varname)?;
 	    writeln!(f, "}}")?;
 	    writeln!(f)?;
 	    writeln!(f, "int set_pos(unsigned int p)")?;
 	    writeln!(f, "{{")?;
-	    writeln!(f, "  if (p < me_sz)")?;
+	    writeln!(f, "  if (p < {}_sz)", varname)?;
 	    writeln!(f, "  {{")?;
 	    writeln!(f, "    iter_idx = p;")?;
 	    writeln!(f, "    return 1;")?;
@@ -114,7 +116,7 @@ impl C {
 	    writeln!(f)?;
 	    writeln!(f, "unsigned char* get_pos(unsigned int p)")?;
 	    writeln!(f, "{{")?;
-	    writeln!(f, "  return (p >= me_sz) ? NULL: &me_data[p];")?;
+	    writeln!(f, "  return (p >= {me}_sz) ? NULL: &{me}_data[p];", me = varname)?;
 	    writeln!(f, "}}")?;
 	    writeln!(f)?;
 	    Ok(())
