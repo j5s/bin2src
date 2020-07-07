@@ -1,6 +1,6 @@
 # Python example
 
-##### Embed an image inside code
+#### Embed an image inside code
 
 This example embed the image *simon-maage-unsplash.png* inside the module `smimgpng.py` .
 
