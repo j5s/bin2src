@@ -37,6 +37,8 @@ impl Pascal {
 	    writeln!(f, "{{******************************************************************************}}")?;
 	    writeln!(f)?;
 	    writeln!(f, "unit {};", out_data_name)?;
+    	    writeln!(f)?;
+	    writeln!(f, "{{$mode ObjFPC}}")?;
 	    writeln!(f)?;
 	    writeln!(f, "interface")?;
 	    writeln!(f)?;
