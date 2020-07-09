@@ -15,7 +15,7 @@ with [Free Pascal][1] (64bits - v3.2.0) was:
 
 <sub>Verfy if your system needs any other compile flags or configurations</sub>
 
-The output binary data at `tPORt.pas` are accessed within [`example.pas`][5] through the variable 
+The output binary data at `tPORt.pas` are accessed within [`example.pas`][6] through the variable 
 'Tport_data' and the music is played with [Windows Multimedia API][2].
 
 Credits:
