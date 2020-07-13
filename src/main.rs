@@ -166,8 +166,8 @@ Options:
 	-d, --out-dir PATH		specify where to output source(s) file(s)
 					if not specified, generate in current directory
 
-	-f, --out-file OUTFILE		specify the output file(s) name (* without extension *)
-					if not specified, output file(s) will have the same name 
+	-f, --out-file OUTFILE		specify the output file(s) name (* without extension *).
+					If not specified, output file(s) will have the same name 
                                         of input file (without extra dots)
 
 	-h, --hex			output bytes in hexadecimal
