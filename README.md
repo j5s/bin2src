@@ -89,9 +89,15 @@ will create the file "myimage.py" at the current directory.
 
 ## Atention
 
-Beware with the **file size** that you'll embed in your code!!!
+* Beware with the **file size** that you'll embed in your code!!!
 
-Verify if it's accepted by your O.S., compiler, language standards, memory at runtime, etc.
+  Verify if it's accepted by your O.S., compiler, language standards, memory at runtime, etc.
+
+* if the file has more dots, in addition to the dot that separates the extension name, 
+  the output file name will be the first name before the first dot. Example (generating 
+  a 'y' file):
+  
+  `abc.def.ghi.x` => `abc.y`
 
 <a name="license"></a>
 ## License
