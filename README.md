@@ -25,6 +25,10 @@ With **bin2src** you can embed it inside the executable and read the bytes direc
 Keep in mind that it's always possible for an "advanced" user extract the file, even inside the 
 executable.
 
+### Give a Star! :star:
+If you like this project and find it useful, please give it a star. I appreciate very much! 
+Thanks!
+
 <a name="usage"></a>
 ## Usage
 
@@ -93,9 +97,9 @@ will create the file "myimage.py" at the current directory.
 
   Verify if it's accepted by your O.S., compiler, language standards, memory at runtime, etc.
 
-* if the file has more dots, in addition to the dot that separates the extension name, 
-  the output file name will be the first name before the first dot. Example (generating 
-  a 'y' file):
+* if the file has more dots, in addition to the dot that separates the extension name and
+  you don't use the `--out-file` or `-f` command line option, the output file name will 
+  be the first name before the first dot. Example (generating a 'y' file):
   
   `abc.def.ghi.x` => `abc.y`
 
