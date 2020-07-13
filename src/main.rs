@@ -13,7 +13,7 @@ mod lang;
 
 use std::env;
 
-const VERSION: &'static str = "0.0.12";
+const VERSION: &'static str = "0.0.36";
 const AUTHOR: &'static str = "Alexandre Gomiero de Oliveira";
 
 #[derive(Debug)]
@@ -144,8 +144,12 @@ fn parse(args: Vec<String>) -> Result<generator::GeneratorInput, String> {
 fn print_help() {
     print!(
 "
-bin2src  - {}
-By {}
+bin2src - version {}
+Copyright (C) 2020  {}
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; for details access LICENSE file at:
+https://github.com/gomiero/bin2src/
 
 bin2src - Converts a binary file to an array of bytes, defined at a source of another language, so you can embed it into your program.
 
@@ -169,6 +173,7 @@ Currently supported languages:
   - Pascal
   - Python
   - Rust
+
 
 ", VERSION, AUTHOR);
 }
