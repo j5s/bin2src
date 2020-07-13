@@ -115,7 +115,7 @@ closed source projects that you'll sell, patent, etc.).
 
 I'm open to make an agreement about the commercial use of the tool (even to change the project 
 to a more 'open' license), or maybe you can consider make a donation to help me with future 
-projects. :smiley: :thumbsup:
+projects. :smiley: :thumbsup: :pray:
 
 
 [1]: ./LICENSE
