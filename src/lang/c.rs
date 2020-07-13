@@ -44,7 +44,7 @@ impl C {
 	let mut doblock = move || -> Result<(), Box<dyn Error>> {
 	    // Header
 	    writeln!(fh, "/*")?;
-	    writeln!(fh, " *****************************************************************************")?;
+	    writeln!(fh, " *******************************************************************************")?;
 	    writeln!(fh, " *")?;
 	    writeln!(fh, " *")?;
 	    writeln!(fh, " *      bin2src - https://github.com/gomiero/bin2src")?;
@@ -53,7 +53,7 @@ impl C {
 	    writeln!(fh, " *")?;
 	    self.write_license(fh)?;
 	    writeln!(fh, " *")?;
-	    writeln!(fh, " ******************************************************************************")?;
+	    writeln!(fh, " *******************************************************************************")?;
 	    writeln!(fh, "*/")?;
 	    writeln!(fh)?;
 	    writeln!(fh, "#ifndef __{}__HEADER", self.go.ofile_name.to_uppercase())?;
@@ -76,7 +76,7 @@ impl C {
 
 	    // Body c	    
 	    writeln!(fc, "/*")?;
-	    writeln!(fc, " *****************************************************************************")?;
+	    writeln!(fc, " *******************************************************************************")?;
 	    writeln!(fc, " *")?;
 	    writeln!(fc, " *")?;
 	    writeln!(fc, " *      bin2src - https://github.com/gomiero/bin2src")?;
@@ -85,7 +85,7 @@ impl C {
 	    writeln!(fc, " *")?;
 	    self.write_license(fc)?;
 	    writeln!(fc, " *")?;
-	    writeln!(fc, " ******************************************************************************")?;
+	    writeln!(fc, " *******************************************************************************")?;
 	    writeln!(fc, "*/")?;
 	    writeln!(fc)?;
 	    writeln!(fc, "#include <stdlib.h>")?;

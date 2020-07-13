@@ -1,5 +1,5 @@
 /*
- *****************************************************************************
+ *******************************************************************************
  *
  *
  *      bin2src - https://github.com/gomiero/bin2src
@@ -8,7 +8,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2020-2020 Alexandre Gomiero de Oliveira*
+ * Copyright (c) 2020-2020 Alexandre Gomiero de Oliveira
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- ******************************************************************************
+ *******************************************************************************
 */
 
 #ifndef __SMBMP__HEADER

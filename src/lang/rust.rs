@@ -21,7 +21,7 @@ impl Rust {
     fn out_header(&mut self, f: &mut BufWriter<fs::File>) -> Result<(), &'static str>
     {
 	let mut doblock = move || -> Result<(), Box<dyn Error>> {
-	    writeln!(f, "//*****************************************************************************")?;
+	    writeln!(f, "//******************************************************************************")?;
 	    writeln!(f, "//")?;
 	    writeln!(f, "//      bin2src - https://github.com/gomiero/bin2src")?;
 	    writeln!(f, "//")?;
@@ -49,7 +49,7 @@ impl Rust {
 	    writeln!(f, "//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS ")?;
 	    writeln!(f, "//  IN THE SOFTWARE.")?;
 	    writeln!(f, "//")?;	    
-	    writeln!(f, "//*****************************************************************************")?;
+	    writeln!(f, "//******************************************************************************")?;
 	    writeln!(f)?;
 	    writeln!(f, "#![allow(dead_code)]")?;
 	    writeln!(f, "pub static {}_SIZE: u64 = {};", self.go.ofile_name.to_uppercase(), self.go.ifile_size)?;
