@@ -32,7 +32,7 @@ For MinGW64, run the command bellow to compile and create the executable:
 
 <sub>* these versions was used for the tests</sub>
 
-##### Credits:
+### Credits:
 
 [Photo][1] by [Simon Maage][2] on [Unsplash][3]
 

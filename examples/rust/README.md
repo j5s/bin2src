@@ -33,7 +33,7 @@ content of the initial file.
 The bzip2 lib was linked statically within the executable (see [build.rs][10]), and 
 two binary libraries (MSVC compatible - see Credits) was used for tests.
 
-##### Credits:
+### Credits:
 
 [philr/bzip2-windows][3] by [Phil Ross][4]
 
