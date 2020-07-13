@@ -15,6 +15,31 @@ impl C {
 	}
     }
 
+    fn write_license(&mut self, f: &mut BufWriter<fs::File>) -> Result<(), Box<dyn Error>>  {
+	writeln!(f, " * MIT License")?;
+	writeln!(f, " *")?;
+	writeln!(f, " * Copyright (c) 2020-2020 Alexandre Gomiero de Oliveira")?;
+	writeln!(f, " *")?;
+	writeln!(f, " * Permission is hereby granted, free of charge, to any person obtaining a copy")?;
+	writeln!(f, " * of this software and associated documentation files (the \"Software\"), to deal")?;
+	writeln!(f, " * in the Software without restriction, including without limitation the rights")?;
+	writeln!(f, " * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell")?;
+	writeln!(f, " * copies of the Software, and to permit persons to whom the Software is")?;
+	writeln!(f, " * furnished to do so, subject to the following conditions:")?;
+	writeln!(f, " *")?;
+	writeln!(f, " * The above copyright notice and this permission notice shall be included in")?;
+	writeln!(f, " * all copies or substantial portions of the Software.")?;
+	writeln!(f, " *")?;
+	writeln!(f, " * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR")?;
+	writeln!(f, " * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,")?;
+	writeln!(f, " * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE")?;
+	writeln!(f, " * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER")?;
+	writeln!(f, " * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,")?;
+	writeln!(f, " * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE")?;
+	writeln!(f, " * SOFTWARE.")?;	    
+	Ok(())
+    }
+    
     fn out_header(&mut self, fh: &mut BufWriter<fs::File>, fc: &mut BufWriter<fs::File>) -> Result<(), &'static str>  {
 	let mut doblock = move || -> Result<(), Box<dyn Error>> {
 	    // Header
@@ -25,6 +50,8 @@ impl C {
 	    writeln!(fh, " *      bin2src - https://github.com/gomiero/bin2src")?;
 	    writeln!(fh, " *")?;
 	    writeln!(fh, " *      File: {:63}", self.go.ifile_name)?;
+	    writeln!(fh, " *")?;
+	    self.write_license(fh)?;
 	    writeln!(fh, " *")?;
 	    writeln!(fh, " ******************************************************************************")?;
 	    writeln!(fh, "*/")?;
@@ -55,6 +82,8 @@ impl C {
 	    writeln!(fc, " *      bin2src - https://github.com/gomiero/bin2src")?;
 	    writeln!(fc, " *")?;
 	    writeln!(fc, " *      File: {:63}", self.go.ifile_name)?;
+	    writeln!(fc, " *")?;
+	    self.write_license(fc)?;
 	    writeln!(fc, " *")?;
 	    writeln!(fc, " ******************************************************************************")?;
 	    writeln!(fc, "*/")?;
