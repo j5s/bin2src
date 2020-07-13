@@ -70,7 +70,7 @@ impl Cshell {
 	    write!(f, "\\x{:02x}", expr)?;
 	    Ok(())
 	};
-
+	self.go.set_output_fname();
 	self.go.odir_path.push(&self.go.ofile_name);
 	self.go.odir_path.set_file_name(self.go.ofile_name.clone());
 	self.go.odir_path.set_extension("c");

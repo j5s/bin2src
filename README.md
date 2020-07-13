@@ -41,7 +41,7 @@ Options:
 	                                generate in current directory
 	-f, --out-file OUTFILE          specify the output file(s) name (* without extension! *). If not
 	                                specified, output file(s) will have the same name of input file
-	-h, --hex                       output bytes in hexadecimal
+	-h, --hex                       output bytes in hexadecimal (default for shellcode)
 	
 </pre>
 

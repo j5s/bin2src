@@ -18,7 +18,7 @@ with [Free Pascal][1] (64bits - v3.2.0) was:
 The output binary data at `tPORt.pas` are accessed within [`example.pas`][6] through the variable 
 'Tport_data' and the music is played with [Windows Multimedia API][2].
 
-Credits:
+##### Credits:
 
 [Music][3] (converted from mp3 to wav) by [tPORt][4] on [Evangelion Server][5]
 

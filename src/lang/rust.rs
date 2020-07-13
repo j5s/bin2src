@@ -30,9 +30,9 @@ impl Rust {
 	    writeln!(f, "//*****************************************************************************")?;
 	    writeln!(f)?;
 	    writeln!(f, "#![allow(dead_code)]")?;
-	    writeln!(f, "pub static {}_SIZE: u64 = {};", self.go.ofile_name, self.go.ifile_size)?;
+	    writeln!(f, "pub static {}_SIZE: u64 = {};", self.go.ofile_name.to_uppercase(), self.go.ifile_size)?;
 	    writeln!(f)?;
-	    writeln!(f, "pub static {}_DATA: &'static [u8; {}] = &[", self.go.ofile_name, self.go.ifile_size)?;
+	    writeln!(f, "pub static {}_DATA: &'static [u8; {}] = &[", self.go.ofile_name.to_uppercase(), self.go.ifile_size)?;
 	    Ok(())
 	};
 
@@ -45,7 +45,7 @@ impl Rust {
 
     fn out_footer(&mut self, f: &mut BufWriter<fs::File>) -> Result<(), &'static str> {
 	let mut doblock = move || -> Result<(), Box<dyn Error>> {
-	    write!(f, "];")?;
+	    writeln!(f, "];")?;
 	    Ok(())
 	};
 	if let Err(_err) = doblock() {
@@ -72,14 +72,7 @@ impl Rust {
 	    }
 	    Ok(())
 	};
-	if self.go.ofile_name.is_empty() {
-	    self.go.ofile_name = self.go.ifile_path
-		.file_stem()
-		.unwrap()
-		.to_str()
-		.unwrap()
-		.to_string();
-	};
+	self.go.set_output_fname();
 	self.go.odir_path.push(&self.go.ofile_name);
 	self.go.odir_path.set_extension("rs");
 

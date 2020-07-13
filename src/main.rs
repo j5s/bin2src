@@ -252,6 +252,20 @@ mod generator {
 		Ok(())
 	    }
 	}
+
+	pub fn set_output_fname(&mut self) {
+	    if self.ofile_name.is_empty() {
+		self.ofile_name = self.ifile_path
+		    .file_stem()
+		    .unwrap()
+		    .to_str()
+		    .unwrap()
+		    .to_string();
+		if let Some(pos) = self.ofile_name.find(".") {
+		    self.ofile_name.truncate(pos);
+		}
+	    };
+	}
     }
 
     #[derive(Debug)]

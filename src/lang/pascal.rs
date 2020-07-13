@@ -115,14 +115,7 @@ impl Pascal {
 	    }
 	    Ok(())
 	};
-	if self.go.ofile_name.is_empty() {
-	    self.go.ofile_name = self.go.ifile_path
-		.file_stem()
-		.unwrap()
-		.to_str()
-		.unwrap()
-		.to_string();
-	};
+	self.go.set_output_fname();
 	self.go.odir_path.push(&self.go.ofile_name);
 	self.go.odir_path.set_extension("pas");
 

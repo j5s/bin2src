@@ -6,6 +6,9 @@ uses
 Windows, MMsystem, fpWavFormat, Tport;
 
 const
+  Author = 'Alexandre Gomiero de Oliveira';
+  Repo	 = 'https://github.com/gomiero/bin2src';
+  
   (* System messages *)
   MsgEAllocated	= 'Specified resource is already allocated.';
   MsgEBadDev = 'Specified device identifier is out of range.';

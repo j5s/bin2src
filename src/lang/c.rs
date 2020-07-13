@@ -151,15 +151,8 @@ impl C {
 	    Ok(())
 	};
 	let mut ifile_h_path = self.go.odir_path.clone();
-	if self.go.ofile_name.is_empty() {
-	    let fstem = self.go.ifile_path
-		.file_stem()
-		.unwrap()
-		.to_str()
-		.unwrap()
-		.to_string();
-	    self.go.ofile_name = fstem;
-	};
+	self.go.set_output_fname();
+
 	// Header file
 	ifile_h_path.push(&self.go.ofile_name);
 	ifile_h_path.set_file_name(&self.go.ofile_name);

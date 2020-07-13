@@ -12,7 +12,7 @@ The command line used to create the module:
 The output file `smimgpng.py` contains the binary data from the image and it is imported 
 in the file [`example.py`][4], wich shows the image inside a `tkinter` frame.
     
-Credits:
+##### Credits:
 
 [Photo][1] by [Simon Maage][2] on [Unsplash][3]
 

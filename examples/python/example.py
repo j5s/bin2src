@@ -4,6 +4,9 @@
 import tkinter as tk
 import smimgpng as smimg
 
+AUTHOR = "Alexandre Gomiero de Oliveira"
+REPO = "https://github.com/gomiero/bin2src"
+
 class App(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
