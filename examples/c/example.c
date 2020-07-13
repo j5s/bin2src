@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include "smbmp.h"
 
+const CHAR AUTHOR[] = "Alexandre Gomiero de Oliveira";
+const CHAR REPO[] = "https://github.com/gomiero/bin2src";
+
 // Winclass
 const CHAR CLASS_NAME[] = "bin2src C example";
 WNDCLASSEXA winClass;
