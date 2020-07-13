@@ -8,7 +8,7 @@ As a proof of concept, the decompressed data is wrote to a file for comparison.
 
 ---
 
-The text file `lorem.txt` is a "[*lorem ipsum*][1]", compacted with [bzip2][1]:
+The text file `lorem.txt` is a "[*lorem ipsum*][1]", compacted with [bzip2][2]:
 
     bzip2 -9 lorem.txt
     
@@ -39,7 +39,7 @@ two binary libraries (MSVC compatible - see Credits) was used for tests.
 
 [ShiftMediaProject/bzip2][5] by [ShiftMediaProject][6]
 
-[bzip2 algorithm][1] by Julian Seward (see [LICENSE][8])
+[bzip2 algorithm][2] by Julian Seward (see [LICENSE][8])
 
 [Wikipedia][7] for the *lorem ipsum* definition.
 
