@@ -13,7 +13,7 @@ mod lang;
 
 use std::env;
 
-const VERSION: &'static str = "0.0.36";
+const VERSION: &'static str = "0.0.45";
 const AUTHOR: &'static str = "Alexandre Gomiero de Oliveira";
 
 #[derive(Debug)]
@@ -145,8 +145,10 @@ fn print_help() {
     print!(
 "
 bin2src - version {}
+
 Copyright (C) 2020  {}
-This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+
+This program comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it
 under certain conditions; for details access LICENSE file at:
 https://github.com/gomiero/bin2src/
@@ -159,11 +161,15 @@ LANG and FILE are required.
 
 Options:
 
-	-l, --out-language LANG		specify the language, where LANG={{c|cshell|pascal|js|python}}
+	-l, --out-language LANG		specify the language, where LANG={{c|cshell|pascal|python|rust}}
+
 	-d, --out-dir PATH		specify where to output source(s) file(s)
 					if not specified, generate in current directory
+
 	-f, --out-file OUTFILE		specify the output file(s) name (* without extension *)
-					if not specified, output file(s) will have the same name of input file
+					if not specified, output file(s) will have the same name 
+                                        of input file (without extra dots)
+
 	-h, --hex			output bytes in hexadecimal
 
 Currently supported languages:
@@ -173,8 +179,6 @@ Currently supported languages:
   - Pascal
   - Python
   - Rust
-
-
 ", VERSION, AUTHOR);
 }
 
