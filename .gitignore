@@ -4,4 +4,5 @@
 .#*
 **/*.exe
 **/__pycache__
-
+Cargo.lock
+*.rs.rustfmt
