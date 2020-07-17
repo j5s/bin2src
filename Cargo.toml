@@ -11,5 +11,6 @@ categories = ["command-line-utilities"]
 repository = "https://github.com/gomiero/bin2src"
 license-file = "LICENSE"
 publish = true
+exclude = ["examples/"]
 
 [dependencies]
