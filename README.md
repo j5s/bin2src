@@ -33,7 +33,7 @@ Thanks!
 ## Usage
 
 <pre>
-Usage: bin2src < -l LANG | --out-lang LANG > [ OPTIONS ] < FILE >
+bin2src < -l LANG | --out-lang LANG > [ OPTIONS ] < FILE >
 
 LANG and FILE are required.
 
