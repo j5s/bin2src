@@ -1,6 +1,6 @@
 [package]
 name = "bin2src"
-version = "0.0.54"
+version = "0.0.56"
 authors = ["Alexandre Gomiero de Oliveira <gomiero@gmail.com>"]
 edition = "2018"
 description = "Converts a binary file to an array of bytes, defined at a source of another language, so you can embed it into your program"

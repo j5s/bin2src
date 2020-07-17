@@ -30,7 +30,7 @@ mod lang;
 
 use std::env;
 
-const VERSION: &'static str = "0.0.45";
+const VERSION: &'static str = "0.0.56";
 const AUTHOR: &'static str = "Alexandre Gomiero de Oliveira";
 
 #[derive(Debug)]
