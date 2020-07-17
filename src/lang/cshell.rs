@@ -51,7 +51,7 @@ impl Cshell {
 	    writeln!(f, " ******************************************************************************")?;
 	    writeln!(f, "*/")?;
 	    writeln!(f)?;
-	    writeln!(f, "#include <stdlib.h>")?;
+	    writeln!(f, "#include <stdio.h>")?;
 	    writeln!(f)?;
 	    if self.go.hex {
 		writeln!(f, "#ifdef __GNUC__")?;
