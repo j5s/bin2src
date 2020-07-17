@@ -103,7 +103,7 @@ bin2src --out-language python myimage.jpg
 will create the file "myimage.py" at the current directory.
 <br>
 <br>
-See the [examples directory][3] for some practical uses of bin2src.
+Check the [examples directory][3] for some practical uses of bin2src.
 
 ## Atention
 
@@ -117,12 +117,18 @@ See the [examples directory][3] for some practical uses of bin2src.
   
   `abc.def.ghi.x` => `abc.y`
   
-* The behavior of `--hex` or `-h` for C shellcode generation is different than the other 
+* The behavior of the option `--hex` or `-h` for C shellcode is different than the other 
   languages. Without this flag, it will generate an array of `unsigned char` bytes, but with
   the hexadecimal flag, it will embed the bytes as a string (`char *`).
+  
+* If you'll generate C shellcode as string, make sure that the binary does not contais null
+  bytes ("\x00") or don't use string functions like `strlen`. This may break your code
+  and could cause exceptions (access violations, etc.).
 
 * All the tests was made (until now) with Windows 10 Pro (2004) and to execute the alpha release
   maybe you have to install the latest [MSVC runtime][4].
+  
+* There are a lot of things to organize and improve the project. Please, check the [TODO][5] list.
 
 <a name="license"></a>
 ## License
@@ -140,3 +146,4 @@ to help me with future projects. :smiley: :thumbsup: :pray:
 [2]: ./LICENSE-GENERATED
 [3]: ./examples
 [4]: https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
+[5]: ./TODO

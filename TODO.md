@@ -2,19 +2,17 @@
 
 ### Important
 
-- [ ] generate and document all examples folders
-- [ ] document all the code
-- [ ] revise the (very much likely) mistakes with English language in all codebase and comments
-- [ ] optimize routines
-- [ ] make tests on Linux and Raspbian
+- [ ] document and format all the code
+- [ ] revise the (very much likely) mistakes with English language
+- [ ] organize and optimize entire project
+- [ ] make tests on Linux and other plataforms
  
 ### Not so important
 
 - [ ] implement new languages
-- [ ] review and reformat all the text files
+- [ ] review the format of all text on repo
  
-
 ### Maybe...
 
 - [ ] implement a 'plugin interface' like for new languages
-- [ ] implement a simple "array compressor" (RLE?)
+
