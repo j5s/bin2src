@@ -28,7 +28,7 @@ Click [here][4] e to see the Python example.
 
 ### Rust
 
-Embed a text compressed with bzip2 and decompress it to memory or a file.
+Embed a text compressed with bzip2 and decompress it direct inside memory or a file.
 
 Click [here][5] e to see the Rust example.
 
