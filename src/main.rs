@@ -170,7 +170,8 @@ Options:
 					if not specified, output file(s) will have the same name 
                                         of input file (without extra dots).
 
-	-h, --hex			output bytes in hexadecimal
+	-h, --hex			output bytes in hexadecimal (for C shellcode this flag has
+                                        diferent behaviors. See the Github site for more information) 
 
 Currently supported languages:
 

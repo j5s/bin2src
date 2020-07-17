@@ -33,20 +33,31 @@ Thanks!
 ## Usage
 
 <pre>
-bin2src < -l LANGUAGE | --out-lang LANGUAGE > [OPTIONS] < FILE >
+Usage: bin2src < -l LANG | --out-lang LANG > [ OPTIONS ] < FILE >
 
-
-LANGUAGE and FILE are required!
+LANG and FILE are required.
 
 Options:
 
-	-l, --out-language LANGUAGE     specify the language, where LANGUAGE={c|cshell|pascal|python|rust}
-	-d, --out-dir PATH              specify where to output source(s) file(s) if not specified,
-	                                generate in current directory
-	-f, --out-file OUTFILE          specify the output file(s) name (* without extension! *). If not
-	                                specified, output file(s) will have the same name of input file
-	-h, --hex                       output bytes in hexadecimal (default for shellcode)
-	
+        -l, --out-language LANG         specify the language, where LANG={c|cshell|pascal|python|rust}
+
+        -d, --out-dir PATH              specify where to output source(s) file(s);
+                                        if not specified, generate in current directory
+
+        -f, --out-file OUTFILE          specify the output file(s) name (* without extension *);
+                                        if not specified, output file(s) will have the same name
+                                        of input file (without extra dots).
+
+        -h, --hex                       output bytes in hexadecimal (for C shellcode this flag has
+                                        diferent behaviors. See the Github site for more information)
+
+Currently supported languages:
+
+  - C
+  - C for shellcode
+  - Pascal
+  - Python
+  - Rust	
 </pre>
 
 ## Examples
