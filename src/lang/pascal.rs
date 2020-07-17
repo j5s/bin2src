@@ -22,12 +22,6 @@ use std::io::{Write, BufWriter};
 use std::fs;
 use std::error::Error;
 
-/*
-macro_rules! ssx {
-    ($($s:expr),*) => ( vec![$($s.to_string()),*] );
-}
-*/
-
 #[derive(Debug)]
 pub struct Pascal {
     go: GeneratorOutput,
