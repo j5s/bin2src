@@ -1,11 +1,28 @@
 
+// bin2src - convert a binary file to source code in various languages
+//     
+//  Copyright (C) 2020  Alexandre Gomiero de Oliveira
+// 
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+// 
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+// 
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
 #![warn(anonymous_parameters)]
 #![warn(bare_trait_objects)]
 #![warn(elided_lifetimes_in_paths)]
 #![warn(single_use_lifetimes)]
 #![warn(trivial_casts)]
 #![warn(trivial_numeric_casts)]
-// #![warn(unreachable_pub)]
 #![warn(unused_import_braces)]
 #![warn(unused_qualifications)]
 

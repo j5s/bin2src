@@ -121,6 +121,9 @@ See the [examples directory][3] for some practical uses of bin2src.
   languages. Without this flag, it will generate an array of `unsigned char` bytes, but with
   the hexadecimal flag, it will embed the bytes as a string (`char *`).
 
+* All the tests was made (until now) with Windows 10 Pro (2004) and to execute the alpha release
+  maybe you have to install the latest [MSVC runtime][4].
+
 <a name="license"></a>
 ## License
 
@@ -136,3 +139,4 @@ to help me with future projects. :smiley: :thumbsup: :pray:
 [1]: ./LICENSE
 [2]: ./LICENSE-GENERATED
 [3]: ./examples
+[4]: https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
