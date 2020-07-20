@@ -10,8 +10,7 @@ readme = "README.md"
 categories = ["command-line-utilities"]
 repository = "https://github.com/gomiero/bin2src"
 license-file = "LICENSE"
-license = "GPL-3.0 License"
-publish = true
+publish = false
 exclude = ["examples/"]
 
 [dependencies]
