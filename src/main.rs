@@ -1,21 +1,19 @@
-
 // bin2src - convert a binary file to source code in various languages
-//     
+//
 //  Copyright (C) 2020  Alexandre Gomiero de Oliveira
-// 
+//
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-// 
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 
 #![warn(anonymous_parameters)]
 #![warn(bare_trait_objects)]
@@ -33,6 +31,7 @@ use std::env;
 const VERSION: &'static str = "0.0.56";
 const AUTHOR: &'static str = "Alexandre Gomiero de Oliveira";
 
+#[doc(hidden)]
 #[derive(Debug)]
 pub enum Lang {
     C,
@@ -40,54 +39,60 @@ pub enum Lang {
     Pascal,
     Python,
     Rust,
-    Undef
+    Undef,
 }
 
 fn main() {
     let args: Vec<String> = match get_args_as_strings() {
-	Ok(e) => e,
-	Err(e) => {
-	    println!("\n{}", e);
-	    print_help();
-	    return;
-	}
+        Ok(e) => e,
+        Err(e) => {
+            println!("\n{}", e);
+            print_help();
+            return;
+        }
     };
 
     if args.len() < 4 {
-	print_help();
-	return;
+        print_help();
+        return;
     };
 
     let mut parse_result: generator::GeneratorInput = match parse(args) {
-	Ok(s) => s,
-	Err(e) => {
-	    println!("\nArgument parser error: {}", e);
-	    print_help();
-	    return;
-	}
+        Ok(s) => s,
+        Err(e) => {
+            println!("\nArgument parser error: {}", e);
+            print_help();
+            return;
+        }
     };
 
     match parse_result.generate() {
-	Err(e) => panic!(format!("Generator error: {}", e)),
-	_ => ""
+        Err(e) => panic!(format!("Generator error: {}", e)),
+        _ => "",
     };
 }
 
+// Returns the args from command line as a string vector
+//
+// The use of std::env::args_os prevents a panic if
+// the user enters an invalid unicode character, so
+// the caller (main) can handle the erro and show
+// a friendly message
 fn get_args_as_strings() -> Result<Vec<String>, &'static str> {
     let mut ret: Vec<String> = Vec::new();
     let args = env::args_os();
 
     for cmd in args {
-	ret.push(
-	    match cmd.into_string() {
-		Ok(c) => c,
-		_  => return Err("Invalid unicode character found")
-	    }
-	);
-    };
+        ret.push(match cmd.into_string() {
+            Ok(c) => c,
+            _ => return Err("Invalid unicode character found"),
+        });
+    }
     Ok(ret)
 }
 
+// Parses command line arguments
+// TODO(gomiero) add a --help | -h command
 fn parse(args: Vec<String>) -> Result<generator::GeneratorInput, String> {
     let mut parse_args = args.iter().skip(1); // Skip program name
     let mut inp_file: String = String::new();
@@ -97,64 +102,66 @@ fn parse(args: Vec<String>) -> Result<generator::GeneratorInput, String> {
     let mut out_hex: bool = false;
 
     while let Some(cmd) = parse_args.next() {
-	let cmd_name: &str;
+        let cmd_name: &str;
 
-	if cmd.starts_with("--") {
-	    cmd_name = &cmd[2..];
-	} else if cmd.starts_with("-") {
-	    cmd_name = &cmd[1..];
-	} else {
-	    inp_file = String::from(&cmd[..]);
-	    break;
-	}
+        // Handles the two formats of commands: --command and -command
+        if cmd.starts_with("--") {
+            cmd_name = &cmd[2..];
+        } else if cmd.starts_with("-") {
+            cmd_name = &cmd[1..];
+        } else {
+            inp_file = String::from(&cmd[..]);
+            break;
+        }
 
-	match cmd_name {
-	    "l" | "out-language" => {
-		let value = match parse_args.next() {
-		    Some(c) => c,
-		    None => return Err(format!("Missing language"))
-		};
-		out_lang = match value.as_str() {
-		    "c" => Lang::C,
-		    "cshell" => Lang::Cshell,
-		    "pascal" => Lang::Pascal,
-		    "python" => Lang::Python,
-		    "rust" => Lang::Rust,
-		    l @ _ => return Err(format!("Language not implemented: {}", l))
-		};
-	    },
-	    "d" | "out-dir" => {
-		let value = match parse_args.next() {
-		    Some(c) => c,
-		    None => return Err(format!("Invalid directory"))
-		};
-		out_dir = String::from(value);
-	    },
-	    "f" | "out-file" => {
-		let value = match parse_args.next() {
-		    Some(c) => c,
-		    None => return Err(format!("Invalid output file"))
-		};
-		out_file = String::from(value);
-	    },
-	    "h" | "hex" => {
-		out_hex = true;
-	    },
-	    c @ _ => return Err(format!("Unknow command: {}", c))
-	}
+        // Mains parser
+        match cmd_name {
+            "l" | "out-language" => {
+                let value = match parse_args.next() {
+                    Some(c) => c,
+                    None => return Err(format!("Missing language")),
+                };
+                out_lang = match value.as_str() {
+                    "c" => Lang::C,
+                    "cshell" => Lang::Cshell,
+                    "pascal" => Lang::Pascal,
+                    "python" => Lang::Python,
+                    "rust" => Lang::Rust,
+                    l @ _ => return Err(format!("Language not implemented: {}", l)),
+                };
+            }
+            "d" | "out-dir" => {
+                let value = match parse_args.next() {
+                    Some(c) => c,
+                    None => return Err(format!("Invalid directory")),
+                };
+                out_dir = String::from(value);
+            }
+            "f" | "out-file" => {
+                let value = match parse_args.next() {
+                    Some(c) => c,
+                    None => return Err(format!("Invalid output file")),
+                };
+                out_file = String::from(value);
+            }
+            "h" | "hex" => {
+                out_hex = true;
+            }
+            c @ _ => return Err(format!("Unknow command: {}", c)),
+        }
     }
     if inp_file.is_empty() {
-	return Err(String::from("Invalid input file"));
+        return Err(String::from("Invalid input file"));
     };
     if out_dir.is_empty() {
-	out_dir = String::from("./");
+        out_dir = String::from("./");
     };
     Ok(generator::GeneratorInput {
-	input_file: inp_file,
-	output_file: out_file,
-	output_dir: out_dir,
-	lang: out_lang,
-	hex: out_hex
+        input_file: inp_file,
+        output_file: out_file,
+        output_dir: out_dir,
+        lang: out_lang,
+        hex: out_hex,
     })
 }
 
@@ -202,163 +209,168 @@ Currently supported languages:
 
 mod generator {
 
-    use std::path::PathBuf;
-    use std::fs;
-    use std::io::{ErrorKind, Write, Read, BufWriter, BufReader};
-    use std::error::Error;
-    use super::Lang;
     use super::lang::c;
     use super::lang::cshell;
     use super::lang::pascal;
     use super::lang::python;
     use super::lang::rust;
+    use super::Lang;
+    use std::error::Error;
+    use std::fs;
+    use std::io::{BufReader, BufWriter, ErrorKind, Read, Write};
+    use std::path::PathBuf;
 
     #[inline]
     pub fn camel(s: &String) -> String {
-	let mut ss = s.clone().to_lowercase();
-	let mut first = ss.remove(0).to_uppercase().to_string();
-	first.push_str(ss.as_str());
-	first
+        let mut ss = s.clone().to_lowercase();
+        let mut first = ss.remove(0).to_uppercase().to_string();
+        first.push_str(ss.as_str());
+        first
     }
 
     #[derive(Debug)]
     pub struct GeneratorOutput {
-	pub ifile_name: String,
-	pub ifile_path: PathBuf,
-	pub ifile_size: u64,
-	pub odir_path: PathBuf,
-	pub ofile_name: String,
-	pub hex: bool
+        pub ifile_name: String,
+        pub ifile_path: PathBuf,
+        pub ifile_size: u64,
+        pub odir_path: PathBuf,
+        pub ofile_name: String,
+        pub hex: bool,
     }
 
     impl GeneratorOutput {
+        pub fn open_inp_file(&mut self) -> Result<BufReader<fs::File>, &'static str> {
+            let inp_file: BufReader<fs::File> =
+                match fs::OpenOptions::new().read(true).open(&self.ifile_path) {
+                    Ok(f) => BufReader::with_capacity(32768, f),
+                    Err(e) => {
+                        return match e.kind() {
+                            ErrorKind::PermissionDenied => Err("Permission"),
+                            ErrorKind::NotFound => Err("Not found"),
+                            _ => Err("Can't open file"),
+                        }
+                    }
+                };
+            Ok(inp_file)
+        }
 
-	pub fn open_inp_file(&mut self) -> Result<BufReader<fs::File>, &'static str> {
-	    let inp_file: BufReader<fs::File> = match fs::OpenOptions::new()
-		.read(true)
-		.open(&self.ifile_path) {
-		    Ok(f) => BufReader::with_capacity(32768, f),
-		    Err(e) => return match e.kind() {
-			ErrorKind::PermissionDenied => Err("Permission"),
-			ErrorKind::NotFound => Err("Not found"),
-			_ => Err("Can't open file")
-		    }
-		};
-	    Ok(inp_file)
-	}
+        pub fn write_data(
+            &mut self,
+            f: &mut BufWriter<fs::File>,
+            numbytes: u64,
+            write_if: fn(bool, bool, &mut BufWriter<fs::File>, u8) -> Result<(), Box<dyn Error>>,
+            sep: String,
+        ) -> Result<(), &'static str> {
+            let mut ifile = self.open_inp_file()?;
+            let mut doblock = || -> Result<(), Box<dyn Error>> {
+                let mut buf = [0u8; 4096];
+                let mut count = 0;
+                'outter: loop {
+                    let sz = ifile.read(&mut buf[..])?;
+                    if sz == 0 {
+                        f.flush()?;
+                        break;
+                    } else if sz <= 4096 {
+                        for b in 0..sz {
+                            if count == self.ifile_size - 1 {
+                                write_if(self.hex, false, f, buf[b])?;
+                                break 'outter;
+                            };
+                            write_if(self.hex, true, f, buf[b])?;
+                            count += 1;
+                            if count % numbytes == 0 {
+                                write!(f, "{}", sep)?;
+                            };
+                        }
+                    };
+                }
+                Ok(())
+            };
+            if let Err(_err) = doblock() {
+                Err("Error when writing data block")
+            } else {
+                Ok(())
+            }
+        }
 
-	pub fn write_data(&mut self, f: &mut BufWriter<fs::File>, numbytes: u64, write_if: fn(bool, bool, &mut BufWriter<fs::File>, u8) -> Result<(), Box<dyn Error>>, sep: String) -> Result<(), &'static str> {
-	    let mut ifile = self.open_inp_file()?;
-	    let mut doblock = || -> Result<(), Box<dyn Error>> {
-		let mut buf = [0u8; 4096];
-		let mut count = 0;
-		'outter: loop {
-		    let sz = ifile.read(&mut buf[..])?;
-		    if sz == 0 {
-			f.flush()?;
-			break;
-		    } else if sz <= 4096 {
-			for b in 0..sz {
-			    if count == self.ifile_size-1 {
-				write_if(self.hex, false, f, buf[b])?;
-				break 'outter;
-			    };
-			    write_if(self.hex, true, f, buf[b])?;
-			    count += 1;
-			    if count % numbytes == 0 {
-				write!(f, "{}", sep)?;
-			    };
-			};
-		    };
-		};
-		Ok(())
-	    };
-	    if let Err(_err) = doblock() {
-		Err("Error when writing data block")
-	    } else {
-		Ok(())
-	    }
-	}
-
-	pub fn set_output_fname(&mut self) {
-	    if self.ofile_name.is_empty() {
-		self.ofile_name = self.ifile_path
-		    .file_stem()
-		    .unwrap()
-		    .to_str()
-		    .unwrap()
-		    .to_string();
-		if let Some(pos) = self.ofile_name.find(".") {
-		    self.ofile_name.truncate(pos);
-		}
-	    };
-	}
+        pub fn set_output_fname(&mut self) {
+            if self.ofile_name.is_empty() {
+                self.ofile_name = self
+                    .ifile_path
+                    .file_stem()
+                    .unwrap()
+                    .to_str()
+                    .unwrap()
+                    .to_string();
+                if let Some(pos) = self.ofile_name.find(".") {
+                    self.ofile_name.truncate(pos);
+                }
+            };
+        }
     }
 
     #[derive(Debug)]
     pub struct GeneratorInput {
-	pub input_file: String,
-	pub output_file: String,
-	pub output_dir: String,
-	pub lang: Lang,
-	pub hex: bool
+        pub input_file: String,
+        pub output_file: String,
+        pub output_dir: String,
+        pub lang: Lang,
+        pub hex: bool,
     }
 
     impl GeneratorInput {
+        fn input_file_test(&mut self) -> Result<(String, PathBuf, u64), &'static str> {
+            let ifpath: PathBuf = PathBuf::from(&self.input_file);
 
-	fn input_file_test(&mut self) -> Result<(String, PathBuf, u64), &'static str> {
-	    let ifpath: PathBuf = PathBuf::from(&self.input_file);
+            if !(ifpath.exists() || ifpath.is_file()) {
+                Err("Input file does not exists or is not a file")
+            } else {
+                let ifname: String = String::from(ifpath.file_name().unwrap().to_str().unwrap());
+                let ifsize = ifpath.metadata().unwrap().len();
+                Ok((ifname, ifpath, ifsize))
+            }
+        }
 
-	    if !(ifpath.exists() || ifpath.is_file()) {
-		Err("Input file does not exists or is not a file")
-	    } else {
-		let ifname: String = String::from(ifpath.file_name().unwrap().to_str().unwrap());
-		let ifsize = ifpath.metadata().unwrap().len();
-		Ok((ifname, ifpath, ifsize))
-	    }
-	}
+        fn output_dir_test(&mut self) -> Result<PathBuf, &'static str> {
+            let ofpath: PathBuf = PathBuf::from(&self.output_dir);
 
-	fn output_dir_test(&mut self) -> Result<PathBuf, &'static str> {
-	    let ofpath: PathBuf = PathBuf::from(&self.output_dir);
+            // Test for output dir
+            if !(ofpath.exists() || ofpath.is_dir()) {
+                Err("Output folder does not exists or is inacessible")
+            } else {
+                Ok(ofpath)
+            }
+        }
 
-	    // Test for output dir
-	    if !(ofpath.exists() || ofpath.is_dir()) {
-		Err("Output folder does not exists or is inacessible")
-	    } else {
-		Ok(ofpath)
-	    }
-	}
+        pub fn generate(&mut self) -> Result<(), &'static str> {
+            // Test for input file
+            let (ifname, ifpath, ifsize) = self.input_file_test()?;
 
-	pub fn generate(&mut self) -> Result<(), &'static str> {
-	    // Test for input file
-	    let (ifname, ifpath, ifsize) = self.input_file_test()?;
+            // Test for output dir
+            let ofpath: PathBuf = self.output_dir_test()?;
 
-	    // Test for output dir
-	    let ofpath: PathBuf = self.output_dir_test()?;
-
-	    let go = GeneratorOutput {
-		ifile_name: ifname,
-		ifile_path: ifpath,
-		ifile_size: ifsize,
-		odir_path: ofpath,
-		ofile_name: String::from(&self.output_file),
-		hex: self.hex
-	    };
-	    match
-		match &self.lang {
-		    Lang::C => c::C::new(go).generate_files(),
-		    Lang::Cshell => cshell::Cshell::new(go).generate_files(),
-		    Lang::Pascal => pascal::Pascal::new(go).generate_files(),
-		    Lang::Python => python::Python::new(go).generate_files(),
-		    Lang::Rust => rust::Rust::new(go).generate_files(),
-		    _ => Err("Language not implemented yet")
-		} {
-		    Ok(_) => {
-			println!("Source(s) created.");
-			Ok(())
-		    },
-		    Err(e) => Err(e)
-		}
-	}
+            let go = GeneratorOutput {
+                ifile_name: ifname,
+                ifile_path: ifpath,
+                ifile_size: ifsize,
+                odir_path: ofpath,
+                ofile_name: String::from(&self.output_file),
+                hex: self.hex,
+            };
+            match match &self.lang {
+                Lang::C => c::C::new(go).generate_files(),
+                Lang::Cshell => cshell::Cshell::new(go).generate_files(),
+                Lang::Pascal => pascal::Pascal::new(go).generate_files(),
+                Lang::Python => python::Python::new(go).generate_files(),
+                Lang::Rust => rust::Rust::new(go).generate_files(),
+                _ => Err("Language not implemented yet"),
+            } {
+                Ok(_) => {
+                    println!("Source(s) created.");
+                    Ok(())
+                }
+                Err(e) => Err(e),
+            }
+        }
     }
 }
