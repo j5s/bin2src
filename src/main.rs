@@ -114,7 +114,7 @@ fn parse(args: Vec<String>) -> Result<generator::GeneratorInput, String> {
             break;
         }
 
-        // Mains parser
+        // Main command line options parser
         match cmd_name {
             "l" | "out-language" => {
                 let value = match parse_args.next() {
@@ -165,6 +165,7 @@ fn parse(args: Vec<String>) -> Result<generator::GeneratorInput, String> {
     })
 }
 
+// Print help message for users
 fn print_help() {
     print!(
 "
@@ -220,6 +221,7 @@ mod generator {
     use std::io::{BufReader, BufWriter, ErrorKind, Read, Write};
     use std::path::PathBuf;
 
+    // Change 
     #[inline]
     pub fn camel(s: &String) -> String {
         let mut ss = s.clone().to_lowercase();
@@ -228,6 +230,7 @@ mod generator {
         first
     }
 
+    // Holds the data for code generation
     #[derive(Debug)]
     pub struct GeneratorOutput {
         pub ifile_name: String,
@@ -238,7 +241,14 @@ mod generator {
         pub hex: bool,
     }
 
+    // Implementation for the GeneratorOutput struct
+    // Have some commom methods for all languages
+    // TODO(gomiero) Verify if it's possible join more
+    //               methods from the modules here
     impl GeneratorOutput {
+
+	// Opens the input file and returns it as a BufReader for
+	// accelerate the input
         pub fn open_inp_file(&mut self) -> Result<BufReader<fs::File>, &'static str> {
             let inp_file: BufReader<fs::File> =
                 match fs::OpenOptions::new().read(true).open(&self.ifile_path) {
@@ -254,6 +264,9 @@ mod generator {
             Ok(inp_file)
         }
 
+	// Write the binary data readed from the input file.
+	// Receives a closure from each language to format
+	// the output bytes.
         pub fn write_data(
             &mut self,
             f: &mut BufWriter<fs::File>,
@@ -293,6 +306,7 @@ mod generator {
             }
         }
 
+	// Adjust the output file name/path
         pub fn set_output_fname(&mut self) {
             if self.ofile_name.is_empty() {
                 self.ofile_name = self
@@ -309,6 +323,11 @@ mod generator {
         }
     }
 
+    // Struct that receives data from parser
+    //
+    // It process the data, test for files existence and
+    // store the information at a GeneratorOutput for
+    // the code generation.
     #[derive(Debug)]
     pub struct GeneratorInput {
         pub input_file: String,
@@ -318,7 +337,10 @@ mod generator {
         pub hex: bool,
     }
 
+    // Implementation of generator input
     impl GeneratorInput {
+
+	// Test if input file exists and is acessible
         fn input_file_test(&mut self) -> Result<(String, PathBuf, u64), &'static str> {
             let ifpath: PathBuf = PathBuf::from(&self.input_file);
 
@@ -331,6 +353,7 @@ mod generator {
             }
         }
 
+	// Test if output dir (if the parameter is especified at command line) exists
         fn output_dir_test(&mut self) -> Result<PathBuf, &'static str> {
             let ofpath: PathBuf = PathBuf::from(&self.output_dir);
 
@@ -342,6 +365,7 @@ mod generator {
             }
         }
 
+	// Prepare data for each language and call generate_files
         pub fn generate(&mut self) -> Result<(), &'static str> {
             // Test for input file
             let (ifname, ifpath, ifsize) = self.input_file_test()?;
