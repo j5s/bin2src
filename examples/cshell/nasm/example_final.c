@@ -34,8 +34,10 @@
 #include <windows.h>
 #include <stdio.h>
 
+// Shell code size
 unsigned int example_sz = 127;
 
+// Shell code data
 unsigned char example_code[] = {
  85,  72, 131, 236,  64, 101,  72, 139,  52,  37,  96,   0,   0,   0,  72, 
 139, 118,  24,  72, 139, 118,  16,  72, 139,  54,  72, 139,  54,  72, 139, 
@@ -47,6 +49,7 @@ unsigned char example_code[] = {
   0, 186,   5,   0,   0,   0, 255, 215,  72, 131, 196,  64,  93, 195,  99, 
  97, 108,  99,   0,   0,   0,   0 };
 
+// Function defined to call shell code
 typedef void (*t_shell_func)(void);
 
 int main(void)

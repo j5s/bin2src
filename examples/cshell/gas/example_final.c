@@ -39,8 +39,10 @@
 #pragma GCC diagnostic ignored "-Woverlength-strings"
 #endif
 
+// Shell code size
 unsigned int example_sz = 128;
 
+// Shell code data
 char *example_code = 
 "\x55\x48\x83\xec\x40\x65\x48\x8b\x34\x25\x60\x00\x00\x00\x48\x8b"
 "\x76\x18\x48\x8b\x76\x10\x48\x8b\x36\x48\x8b\x36\x48\x8b\x7e\x30"
@@ -55,6 +57,7 @@ char *example_code =
 #pragma GCC diagnostic pop
 #endif
 
+// Function defined to call shell code
 typedef void (*t_shell_func)(void);
 
 int main(void)
