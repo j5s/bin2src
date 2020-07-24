@@ -169,7 +169,7 @@ fn main() {
     };
     let mut bzu: BzUncompress =  BzUncompress::new("lorem.out.txt");
     
-    println!("inicio");
+    println!("Begin decompression...");
     res = bzu.decompress_init();
     if res != BZ_OK {
 	printerr(res);
