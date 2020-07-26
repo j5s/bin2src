@@ -18,7 +18,10 @@ class App(tk.Frame):
         canvas.create_image(0, 0, image = self.photo_img, anchor=tk.NW)
         self.pack()
 
+# Entry point: create the root window...
 root = tk.Tk()
+# ...the App instance...
 app = App(master = root)
+# ...and run the main loop.
 app.mainloop()
 

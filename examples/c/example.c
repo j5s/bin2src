@@ -1,4 +1,9 @@
+/*
+Embed an image inside code
 
+Binary data of the image is at the file: smbmp.c
+
+ */
 #include <windows.h>
 #include <stdio.h>
 #include "smbmp.h"
@@ -6,7 +11,7 @@
 const CHAR AUTHOR[] = "Alexandre Gomiero de Oliveira";
 const CHAR REPO[] = "https://github.com/gomiero/bin2src";
 
-// Winclass
+// Window class declarations
 const CHAR CLASS_NAME[] = "bin2src C example";
 WNDCLASSEXA winClass;
 
@@ -82,6 +87,8 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
   {
   case WM_CREATE:
   {
+    // Message WM_CREATE analize the header of the bitmap file
+    // embeded and allocate a HBITMAP
     LPBITMAPFILEHEADER fh;
     PBITMAPINFOHEADER ih;
     VOID* imgdata;
@@ -114,6 +121,8 @@ LRESULT CALLBACK wndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
   case WM_PAINT:
   {
+    // On WM_PAINT, select the handle stored at photo
+    // and copy it to screen (BitBlt)
     PAINTSTRUCT ps;
     HDC hdc;
     HDC hdcMemory;

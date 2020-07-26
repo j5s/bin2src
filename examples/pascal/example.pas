@@ -1,3 +1,9 @@
+{*******************************************************}
+{                                                       }
+{  Pascal example of bin2src                            }
+{                                                       }
+{*******************************************************}
+
 program PascalExample;
 
 {$mode objfpc}
@@ -36,7 +42,7 @@ type
 	opCloseDev
 	);
   
-  (* Pointer types *)
+  (* Definition of types to acces WAV data *)
   PWaveFormat = ^TWaveFormat;
   PWaveDataHeader = ^TChunkHeader;
 
@@ -98,7 +104,7 @@ begin
   end;
 end;
 
-(* Safe copy wave struct *)
+(* Safe copy WAV struct *)
 procedure CopyWaveStruct(i: PWaveFormat; var o: WAVEFORMATEX);
 begin
    with i^ do
