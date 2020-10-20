@@ -1,7 +1,7 @@
 # Examples  
 
 
-### Examples are for Windows and Linux
+### Examples - Windows and Linux
 ---
 Examples for Windows (Click [here][1])
 
