@@ -1,39 +1,24 @@
-# Examples
+# Examples  
 
-Here you'll find some examples of ideas to use bin2src:
 
-### C
+### Examples - Windows and Linux
+---
+Examples for Windows (Click [here][1])
 
-A C program with an embed an image inside code. 
+Tested with:
 
-Click [here][1] e to see the C example.
+* Windows 10 Pro - 2004 (Compilation 19041.388)
+* Visual Studio Community 2019 (MSVC - Version 19.26.28806 - x64)*
+* MinGW64 gcc version 10.1.0 (Rev3, Built by MSYS2 project)*
 
-### C shellcode
+---
 
-Runs the common "open calc" example.
+Examples for Linux (Click [here][2])
 
-Click [here][2] e to see the C shellcode example.
+Tested with:
 
-### Pascal
+* Debian 5.7.6-1 (2020-06-24) x86-64 GNU/Linux (testing)
+* gcc version 10.1.0 (Debian 10.1.0-6)
 
-A Pascal program that embed a music (wav) inside code.
-
-Click [here][3] e to see the Pascal example.
-
-### Python
-
-Basically the same example of C code, made in Python with Tkinter.
-
-Click [here][4] e to see the Python example.
-
-### Rust
-
-Embed a text compressed with bzip2 and decompress it direct inside memory or a file.
-
-Click [here][5] e to see the Rust example.
-
-[1]: ./c
-[2]: ./cshell
-[3]: ./pascal
-[4]: ./python
-[5]: ./rust
+[1]: ./windows
+[2]: ./linux
