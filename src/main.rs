@@ -28,7 +28,7 @@ mod lang;
 
 use std::env;
 
-const VERSION: &'static str = "0.0.56";
+const VERSION: &'static str = "0.0.57";
 const AUTHOR: &'static str = "Alexandre Gomiero de Oliveira";
 
 #[derive(Debug)]
@@ -170,7 +170,7 @@ bin2src - Converts a binary file to an array of bytes, defined at a source of an
 
 Usage: bin2src < -l LANG | --out-lang LANG > [ OPTIONS ] < FILE >
 
-LANG and FILE are required.
+LANG and FILE are required and FILE must be the last argument.
 
 Options:
 
