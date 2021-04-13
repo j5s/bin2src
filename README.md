@@ -26,7 +26,7 @@ Keep in mind that it's always possible for an "advanced" user extract the file, 
 executable.
 
 ### Give a Star! :star:
-If you like this project and find it useful, please give it a star. I'll appreciate very much! 
+If you like this project and find it useful, please give it a star. I'll appreciate it very much! 
 Thanks!
 
 <a name="usage"></a>
