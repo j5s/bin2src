@@ -4,13 +4,13 @@
 
 This example embed the image *simon-maage-unsplash.png* inside the module `smimgpng.py` .
 
-The command line used to create the module:
+The command line to create the module:
 
     bin2src --out-language python --hex --out-file smimgpng simon-maage-unsplash.png
 
 
-The output file `smimgpng.py` contains the binary data from the image and it is imported 
-in the file [`example.py`][4], wich shows the image inside a `tkinter` frame.
+The output file `smimgpng.py` contains the binary data from the image, and it is imported 
+by the file [`example.py`][4], wich shows the image inside a `tkinter` frame.
     
 ### Credits:
 

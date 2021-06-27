@@ -1,5 +1,5 @@
 #
-# Embed photo data inside a Tk frame
+# Embed a photo data inside a Tk frame
 #
 import tkinter as tk
 import smimgpng as smimg

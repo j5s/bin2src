@@ -1,6 +1,8 @@
 # bin2src
 
-> **bin2src** is a simple command line that converts a binary file to an array of bytes, defined at a source of another language, so you can embed it into your program.
+> **bin2src** is a simple command line that converts a binary file to an array of bytes, 
+assigned to a variable in a source file of another language; therefore you can embed 
+it into your program.
 
 Currently supported output languages:
 
@@ -14,20 +16,17 @@ Currently supported output languages:
 <a name="overview"></a>
 ## Overview
 
-**bin2src** reads a binary file (.jpg, .wav, .mp3, etc.) and generate a source file with the binary
-data embeded into it as a byte array.  
+**bin2src** reads a binary file (e.g. jpg, wav, mp3, etc.) and generates a source file 
+with the binary data embeded into it as a byte array and assigned to a variable.  
 
-Sometimes, maybe you don't want to distribute a binary file inside your program's package and 
-users can access it directly.  
+It is useful if you don't want to distribute a binary file together with your application
+and let users have direct access to it.  
 
-With **bin2src** you can embed it inside the executable and read the bytes direct from memory.   
+With **bin2src** you can embed the data inside the final executable and use it through the
+variable stored in memory.   
 
-Keep in mind that it's always possible for an "advanced" user extract the file, even inside the 
-executable.
-
-### Give a Star! :star:
-If you like this project and find it useful, please give it a star. I'll appreciate it very much! 
-Thanks!
+Keep in mind that it is always possible for an "advanced" user to extract the data, either
+from the executable or from a memory dump.
 
 <a name="usage"></a>
 ## Usage
@@ -60,9 +59,9 @@ Currently supported languages:
   - Rust	
 </pre>
 
-## Examples
+## Some Examples
 
-Suppose you have an image `myimage.jpg`:
+Suppose you have an image `myimage.jpg` that you want to embed into your executable:
 <br>
 <br>
 
@@ -73,9 +72,10 @@ Suppose you have an image `myimage.jpg`:
 bin2src --out-language pascal --out-dir "X:\My Projects\project01" --out-file image01 myimage.jpg
 ```
 
-<sub>Windows paths with spaces needs quotation marks</sub>
+<sub>Windows paths with spaces need quotation marks</sub>
 
-will create the file `...\image01.pas` with bytes in decimal format: `[210, 0, ...]`.
+This command will create the file `...\image01.pas` with the data defined using decimal 
+format: `[210, 0, ...]`.
 <br>
 <br>
 
@@ -86,7 +86,8 @@ will create the file `...\image01.pas` with bytes in decimal format: `[210, 0, .
 bin2src -l c -d "X:\My Projects\project02" -f image01 -h myimage.jpg
 ```
 
-will create the files (with bytes in hexadecimal: `[0x10, 0xfa, ...]`):
+This command will create the files, but with binary data in hexadecimal format:
+`[0x10, 0xfa, ...]`:
 
 * `...\image01.h`
 * `...\image01.c`
@@ -100,47 +101,48 @@ will create the files (with bytes in hexadecimal: `[0x10, 0xfa, ...]`):
 bin2src --out-language python myimage.jpg
 ```
 
-will create the file "myimage.py" at the current directory.
+This command will create the file `myimage.py` at the current directory.
 <br>
 <br>
-Check the [examples directory][3] for some practical uses of bin2src.
+Check other examples at [examples directory][3] for some practical uses of bin2src.
 
 ## Atention
 
-* Beware with the **file size** that you'll embed in your code!!!
+* Beware of the **file size** that you will embed in your code!!!
 
-  Verify if it's accepted by your O.S., compiler, language standards, memory at runtime, etc.
+  Ensure that it is accepted by your O.S., compiler, language standards, memory at 
+  runtime, etc.
 
-* if the file has more dots, in addition to the dot that separates the extension name and
-  you don't use the `--out-file` or `-f` command line option, the output file name will 
-  be the first name before the first dot. Example (generating a 'y' file):
+* If the input file name has more dots, in addition to the dot that splits the name and
+  the extension, without the `--out-file` or `-f` command line option the output 
+  file name will be the first name before the first dot. Example:
   
   `abc.def.ghi.x` => `abc.y`
   
-* The behavior of the option `--hex` or `-h` for C shellcode is different than the other 
-  languages. Without this flag, it will generate an array of `unsigned char` bytes, but with
-  the hexadecimal flag, it will embed the bytes as a string (`char *`).
+* The option `--hex` or `-h` for C shellcode output works differently. Without this flag, 
+  it will define the data type as `unsigned char` bytes, otherwise with the hexadecimal
+  flag, it will embed the bytes as a string type (`char *`).
   
-* If you'll generate C shellcode as string, make sure that the binary does not contais null
-  bytes ("\x00") or don't use string functions like `strlen`. This may break your code
-  and could cause exceptions (access violations, etc.).
+* To embed the generated C shellcode using string format, make sure that the binary data 
+  doesn't contains null bytes ("\x00") or don't use string functions from stdlib, like 
+  `strlen`. This may break your code and could raise exceptions (e.g. access violations, 
+  etc.).
 
-* All the tests was made (until now) with Windows 10 Pro (2004) and to execute the alpha release
-  maybe you have to install the latest [MSVC runtime][4].
+* All of the tests were made with Windows 10 Pro (2004), and to execute the alpha release
+  maybe you have to install the latest [MSVC runtime][4]. Even though, it should works 
+  well on other platforms.
   
-* There are a lot of things to organize and improve the project. Please, check the [TODO][5] list.
+* There are a lot of things to organize and improvements to do. Suggestions are always 
+  welcome.
 
 <a name="license"></a>
 ## License
 
-Developed by Alexandre Gomiero de Oliveira under the [GPL-3.0 License][1].
+Developed by Alexandre Gomiero de Oliveira under the [MIT License][1].
 
 Any code generated by **bin2src** are under [MIT License][2].
 
-Please contact me if you need a different license.
-
-If you'll use the tool to develop commercial products, please, consider make a donation 
-to help me with future projects. :smiley: :thumbsup: :pray:
+Please, contact me if you need another license type.
 
 [1]: ./LICENSE
 [2]: ./LICENSE-GENERATED

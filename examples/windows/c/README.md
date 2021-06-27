@@ -7,30 +7,31 @@ This example embed the image *simon-maage-unsplash.bmp* inside the files:
 - [smbmp.h][6] (header)
 - smbmp.c (data)
 
-The command line used to create the files:
+The command line to create the files:
 
     bin2src.exe -l c -h -f smbmp simon-maage-unsplash.bmp
 
-The output binary data at `smbmp.c` are accessed within [`example.c`][5] by the variable 
-'smbmp_data' to create a [device independent bitmap][4]  (DIB), which is displayed inside 
-the client area of a windows.
+The output binary data at `smbmp.c` are accessed within [`example.c`][5] through the 
+variable 'smbmp_data', used to create a [device independent bitmap][4] (DIB), which is 
+displayed inside a windows client area.
 
 ---
 
-The test [`example.c`][5] can be compiled (without any changes) with:
+The test [`example.c`][5] could be compiled (without any changes) with:
 
 - Visual Studio Community 2019 (MSVC - Version 19.26.28806 - x64)<sup>*</sup> 
 - MinGW64 gcc version 10.1.0 (Rev3, Built by MSYS2 project)<sup>*</sup> 
 
 
-For MSVC, just create a C++ project, import all source files (.c and .h) and run the project.
+For MSVC, just create a C++ project, import all source files (.c and .h) and run the 
+project.
 
-For MinGW64, run the command bellow to compile and create the executable:
+For MinGW64, run the following command to compile and create the executable:
 
     gcc -Wall -Wextra -pedantic -O3 -mwindows -m64 -o example.exe example.c smbmp.c
 
 
-<sub>* these versions was used for the tests</sub>
+<sub>*these are the versions used during the tests</sub>
 
 ### Credits:
 

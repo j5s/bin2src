@@ -1,36 +1,33 @@
 # Examples
 
-Here you'll find some examples of ideas to use bin2src:
+Here you will find some examples on how to use bin2src:
 
 ### C
 
-A C program with an embed an image inside code. 
-
-Click [here][1] e to see the C example.
+A C program that embeds an image inside code.   
+[here][1]
 
 ### C shellcode
 
-Runs the common "open calc" example.
+Runs the so common "open calc" example.  
+[here][2]
 
-Click [here][2] e to see the C shellcode example.
 
 ### Pascal
 
-A Pascal program that embed a music (wav) inside code.
+A Pascal program that embeds a music (wav) inside code.  
+[here][3]
 
-Click [here][3] e to see the Pascal example.
 
 ### Python
 
-Basically the same example of C code, made in Python with Tkinter.
-
-Click [here][4] e to see the Python example.
+Basically the same example of C code, but made in Python with Tkinter.  
+[here][4]
 
 ### Rust
 
-Embed a text compressed with bzip2 and decompress it direct inside memory or a file.
-
-Click [here][5] e to see the Rust example.
+Embed a text compressed with bzip2, and decompress it direct inside memory or to a file.  
+[here][5]
 
 [1]: ./c
 [2]: ./cshell
