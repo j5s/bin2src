@@ -75,7 +75,7 @@ fn main() {
     };
 
     match parse_result.generate() {
-        Err(e) => panic!(format!("Generator error: {}", e)),
+        Err(e) => panic!("Generator error: {}", e),
         _ => "",
     };
 }
