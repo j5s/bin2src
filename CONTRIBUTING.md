@@ -1,20 +1,18 @@
 # Contributing to bin2src
 
-Thank you for contribute with the project!!! :smiley: :thumbsup:
-
 # Issues
 
-Found a bug or want to suggest an enhancement?
+Found a bug or want to suggest a new feature?
 
-Open an issue on the repository and I'll try to answer as soon as possible.
+Open an issue and I will try to answer it as soon as possible.
 
 # Pull Requests
 
-Fixed a bug, add a new feature or correct errors with English language?
+Fixed a bug, added a new feature or corrected misspelled words?
 
-Create a [pull request][2] and, after I review it and if there are no problems, the PR will be merged.
+Create a [pull request][2] and, after a successful review, the PR will be merged.
 
-For enhancements contributions, please see before the [TODO][1] for some ideas.
+For new features, please check the [TODO][1] for some ideas.
 
 
 [1]: ./TODO.md
